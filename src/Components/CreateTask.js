@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { v4 as uuidv4 } from 'uuid';
 import myContextAPI from "../ContextAPI/ContextAPI";
@@ -13,7 +13,9 @@ function CreateTask() {
         name: "",
         status: "todo"
     })
-    // console.log(task)
+    
+
+    // to create new list and set data in localstorage
     const handleSubmit = (e) => {
         e.preventDefault()
         if (task.name.length < 3) {
@@ -33,6 +35,9 @@ function CreateTask() {
         })
         }
     }
+
+    
+
     return <>
         <form onSubmit={handleSubmit} className="Form">
             <input type="text" value={task.name} onChange={((e) => {
@@ -44,6 +49,7 @@ function CreateTask() {
             })} />
             <button>Create</button>
         </form>
+        
     </>
 
 }
