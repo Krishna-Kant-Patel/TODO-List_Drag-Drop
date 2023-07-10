@@ -11,6 +11,8 @@ function Authentication({setLogin}){
         user:'',
         password:''
     })
+
+    //checking right credentials
 const check =()=>{
     if(auth.user==="krishna" && auth.password==="todos"){
         setLogin(true)

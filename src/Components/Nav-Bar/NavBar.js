@@ -3,27 +3,26 @@ import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useState, useEffect } from 'react';
+import { useContext } from "react";
+import myContextAPI from '../../ContextAPI/ContextAPI';
 
 
 
 
 function NavBar({login, setLogin}) {
+  const {tasks, setTasks} = useContext(myContextAPI)
     const [searchtodos, setSearch] = useState('')
-    const [searchdata, setData] = useState({
-        id: '',
-        name: "",
-        status: "todo"
-    })
+    
 
-    useEffect(()=>{
-        let data = JSON.parse(localStorage.getItem("tasks"))
-        if(data){
-        setData(data)}
-     },[])
-     const filteredTasks = searchdata.filter((task) =>
-     task.name.toLowerCase().includes(searchtodos.toLowerCase())
-   );
-   useEffect(()=>{setData(filteredTasks)},[])
+    //fillter search 
+     const filteredTasks = tasks.filter((task) =>
+     task.name.toLowerCase().includes(searchtodos.toLowerCase()));
+   
+     //set search filltered data
+     useEffect(()=>{
+      setTasks(filteredTasks)
+  
+    },[searchtodos])
 
 
 
@@ -41,6 +40,7 @@ function NavBar({login, setLogin}) {
             placeholder="Search"
             className="me-2"
             aria-label="Search"
+            onChange={((e)=>setSearch(e.target.value))}
           />
           <Button variant="outline-success">Search</Button>
           

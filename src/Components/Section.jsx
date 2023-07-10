@@ -9,6 +9,8 @@ const Section = ({ status }) => {
         todos,
         inProgress,
         closed} = useContext(myContextAPI)
+
+      //for droping todos in different sections
         const [{ isOver }, drop] = useDrop(() => ({
             accept: "task",
             drop:(item)=> addtasktoSection(item.id),
@@ -16,7 +18,7 @@ const Section = ({ status }) => {
               isOver: !!monitor.isOver()
             })
           }))
-
+        //seting todos according to status and maping
         let text = "Todo"
         let taskmap = todos
         let bg = 'red'
@@ -35,6 +37,8 @@ const Section = ({ status }) => {
             bg = "orange"
             taskmap = closed
         }
+        
+        //adding todos to sections
         const addtasktoSection = (id) =>{
             setTasks((prev) => {
                 const updatedTasks = prev.map((ele)=>{
@@ -63,8 +67,11 @@ const Section = ({ status }) => {
 export default Section;
 
 
-
+//new component for showing todos in each sections
 const Tasks = ({item, tasks, setTasks}) =>{
+
+
+    //Remove  todos
     const handleRemove=(id)=>{
         // console.log(id)
         const ftask = tasks.filter(item => item.id!==id)
@@ -72,6 +79,8 @@ const Tasks = ({item, tasks, setTasks}) =>{
         setTasks(ftask)
         toast.error("Todo Removed")
     }
+
+    //draging todos
     const [{ isDragging }, drag] = useDrag(() => ({
         type: "task",
         item:{id: item.id},

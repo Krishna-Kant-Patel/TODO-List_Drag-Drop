@@ -7,6 +7,8 @@ export default myContextAPI;
 
 
 export function CustomProvider() {
+
+    //created all variables for project
     const [tasks, setTasks] = useState([]);
     const [todos, setTodos] = useState([]);
     const [inProgress, setInProgress] = useState([]);

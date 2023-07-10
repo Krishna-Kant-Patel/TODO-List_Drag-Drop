@@ -12,21 +12,22 @@ import Authentication from './Components/Authentication/Authentication';
 
 function App() {
   
-  // console.log(tasks)
-  const {tasks, setTasks} = useContext(myContextAPI)
-  const [login, setLogin] = useState(false)
+  const {tasks, setTasks} = useContext(myContextAPI)//context api provider
+  const [login, setLogin] = useState(false) //login 
  
+  //get data from localstorage when ever it reload
   useEffect(()=>{
     let data = JSON.parse(localStorage.getItem("tasks"))
     if(data){
     setTasks(data)}
- },[])
-//  console.log(tasks)
+ },[]) 
+
+
   return (
     <DndProvider backend={HTML5Backend}>
     <Toaster/>
     <NavBar login={login} setLogin={setLogin} />
-    
+    {/* conditional login */}
     {login ?
     (<div className="App">
       <h1>To Do App</h1>

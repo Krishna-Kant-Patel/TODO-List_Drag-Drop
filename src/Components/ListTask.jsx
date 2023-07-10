@@ -15,7 +15,7 @@ function ListTask() {
         closed,
         setClosed } = useContext(myContextAPI)
 
-
+  //seting todos according to its status
     useEffect(() => {
         const fTodos = tasks.filter(item => item.status === 'todo')
         const fInProgress = tasks.filter(item => item.status === 'inprogress')
@@ -27,12 +27,12 @@ function ListTask() {
     }, [tasks])
     
 
-    const statuses = ["todo", "inprogress", "closed"]
+    const statuses = ["todo", "inprogress", "closed"] //statuses
     return <>
         <div className="TodosContainer">
             {
                 statuses.map((status, index) => {
-                    return <Section key={index} status={status} />
+                    return <Section key={index} status={status} />  //calling Section 
                 })
             }
         </div>
